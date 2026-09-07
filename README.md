@@ -26,12 +26,27 @@ python3 -m http.server 8792 --directory web
 
 Then open <http://localhost:8792>.
 
+## Live site
+
+**https://jayyp1234.github.io/h2-vessel-simulator/**
+
 ## Deploying
 
-`web/` is fully static — no build step, no backend, no external requests. Drop the folder
-on any static host (Vercel, Netlify, GitHub Pages, S3) and it works. `model-constants.js`
-is generated, so re-run `python engine/run.py --emit-web-constants` before deploying if
-you have changed the engine.
+`web/` is fully static — no build step, no backend, no external requests. It is served
+here from the `gh-pages` branch, whose root is the contents of `web/`.
+
+To redeploy after a change:
+
+```bash
+python engine/run.py --emit-web-constants
+git add -A && git commit -m "Update" && git push origin main
+git subtree split --prefix web -b gh-pages-tmp && git push origin gh-pages-tmp:gh-pages --force && git branch -D gh-pages-tmp
+```
+
+The `.github/workflows/deploy.yml` workflow does the same thing automatically on every
+push, but it is set to manual-only because GitHub Actions cannot run while the account
+has a billing hold. Once that clears, switch the Pages source back to "GitHub Actions"
+and the subtree step is no longer needed.
 
 ## The four samples (spec Section 1, 2×2 design)
 
