@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>H₂ Vessel Simulator</title>
+<script>
+window.__CB = Date.now();
+document.write('<link rel="stylesheet" href="styles.css?t=' + window.__CB + '">');
+</script>
+<script type="importmap">
+{"imports":{
+  "three":"./vendor/three.module.min.js",
+  "three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"
+}}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <div class="mark">H₂</div>
+    <div><b>Hydrogen Storage Vessel Simulator</b>
+      <span>Zeolite-A charge / discharge duty cycle</span></div>
+  </div>
+  <nav class="steps" id="steps"></nav>
+  <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+</header>
+
+<div class="shell">
+  <aside class="rail-left">
+    <div class="card"><h3>Simulation parameters</h3><div class="body">
+
+      <div class="field">
+        <label for="qst">Isosteric heat q<sub>st</sub> — <span id="qstVal">6.0</span> kJ/mol</label>
+        <input type="range" id="qst" min="4" max="9" step="0.1" value="6"/>
+        <div class="hint">Spec gives ~5–8 kJ/mol and does not measure it. The result is
+          exponentially sensitive to this value.</div>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="tcharge">Charge (°C)</label>
+          <input type="number" id="tcharge" value="-78" step="1"/></div>
+        <div class="field"><label for="tdesorb">Desorb (°C)</label>
+          <input type="number" id="tdesorb" value="90" step="5"/></div>
+      </div>
+      <div class="hint" style="margin-top:-6px;margin-bottom:13px">Spec: −78 °C bath;
+        desorption 80–100 °C.</div>
+
+      <div class="row">
+        <div class="field"><label for="pcharge">Charge P (bar)</label>
+          <input type="number" id="pcharge" value="10" step="1" min="1" max="15"/></div>
+        <div class="field"><label for="cycles">Cycles</label>
+          <input type="number" id="cycles" value="5" step="1" min="1" max="20"/></div>
+      </div>
+
+      <div class="field">
+        <label for="regfac">Regular-form factor — <span id="regfacVal">0.75</span></label>
+        <input type="range" id="regfac" min="0.4" max="1" step="0.01" value="0.75"/>
+        <div class="hint">4A capacity as a fraction of 5A. <b>Unanchored estimate</b> — no
+          published 4A isotherm is supplied. This one number sets the entire
+          activated-vs-regular result.</div>
+      </div>
+
+      <div class="field">
+        <label for="fade">Capacity fade per cycle — <span id="fadeVal">0%</span></label>
+        <input type="range" id="fade" min="0" max="0.1" step="0.005" value="0"/>
+        <div class="hint">Spec specifies no degradation mechanism, so cycles are identical
+          at 0%. Impose a rate only if you can justify it.</div>
+      </div>
+
+      <button class="btn ghost" id="resetBtn">Reset to spec defaults</button>
+    </div></div>
+  </aside>
+
+  <main id="main"></main>
+  <aside class="rail-right" id="rail-right"></aside>
+</div>
+
+<script>
+// Loaded via document.write so they stay synchronous and correctly ordered, while the
+// cache-busting token guarantees an engine re-run or a code edit is picked up on reload.
+["model-constants.js", "physics.js", "app.js"].forEach(f =>
+  document.write('<scr' + 'ipt src="' + f + '?t=' + window.__CB + '"></scr' + 'ipt>'));
+</script>
+<script type="module">
+  const { createVesselView } = await import("./vessel3d.js?t=" + window.__CB);
+  window.__createVesselView = createVesselView;
+  window.dispatchEvent(new Event("vessel3d-ready"));
+</script>
+</body>
+</html>
