@@ -1,10 +1,10 @@
 """
 Isotherm core for the Zeolite-A hydrogen storage vessel simulation.
 
-Implements the project specification, with documented departures where that
-specification is internally inconsistent or physically unsupportable. Each is
-tagged [SPEC-DEV-n], surfaced in the app, and written into the methodology note
-so it can be defended rather than discovered.
+Implements "H2 Zeolite Vessel Simulation Spec.docx", with documented departures
+where that specification is internally inconsistent or physically unsupportable.
+Each is tagged [SPEC-DEV-n], surfaced in the app, and written into the methodology
+note so it can be defended rather than discovered.
 
   [SPEC-DEV-1] The spec's plausibility note cites "~2.2 wt% at near-ambient temperature,
                0-15 bar" and instructs treating it as a floor to exceed at -78 C. That

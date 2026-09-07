@@ -1,10 +1,8 @@
 # Hydrogen Storage Vessel Simulator
 
-Predictive simulation for a Ca-exchanged zeolite-A hydrogen storage vessel. No physical
-H₂ testing was performed; every number here is model output.
-
-> The source specification document is unpublished academic material and is not included
-> in this repository. Every parameter the engine needs is encoded in `engine/model.py`.
+Predictive simulation for a Ca-exchanged zeolite-A hydrogen storage vessel, built against
+`H2 Zeolite Vessel Simulation Spec.docx`. No physical H₂ testing was performed; every
+number here is model output.
 
 - **`engine/`** — Python. Isotherms, the charge/discharge duty cycle, and the Section 7
   deliverables (.xlsx, .docx, 300 dpi PNG).
@@ -130,8 +128,19 @@ engine/run.py            CLI
 engine/parity_check.py   144 option combinations, Python vs JavaScript
 web/physics.js           same physics, shared by browser and parity test
 web/model-constants.js   generated — do not edit by hand
-out/                     generated deliverables
+out/                     generated deliverables (committed)
 ```
+
+## Repository contents
+
+| Path | What it is |
+|------|-----------|
+| `H2 Zeolite Vessel Simulation Spec.docx` | The source specification this tool implements |
+| `out/` | Generated deliverables: results (.xlsx/.docx), methodology note, 300 dpi figures, raw JSON |
+| `engine/` | Isotherms, duty cycle, deliverable pipeline, CLI, parity test |
+| `web/` | Static browser app, deployed to the live site |
+
+Everything in `out/` is reproducible from source — delete it and run `python engine/run.py`.
 
 The physics exists in two languages so the browser can recompute without a server.
 `parity_check.py` compares 2,304 values and fails on any disagreement; run it after
