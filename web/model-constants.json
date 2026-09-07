@@ -1,0 +1,141 @@
+{
+  "generated_by": "engine/run.py --emit-web-constants",
+  "constants": {
+    "R": 8.314,
+    "M_H2": 2.016,
+    "T_BENCH": 77.0,
+    "DOE_TARGET_WT": 5.5,
+    "SAMPLE_MASS_G": 125.0,
+    "MAX_DESIGN_BAR": 15.0
+  },
+  "fit": {
+    "q_max": 1.2259561428548036,
+    "b_77K": 0.3168863114464977,
+    "residuals_pct": [
+      -7.811,
+      3.013,
+      1.567,
+      -0.587,
+      -0.864
+    ],
+    "max_abs_error_pct": 7.810777606698463,
+    "rmse_pct": 3.837421674620971
+  },
+  "samples": [
+    {
+      "id": 1,
+      "activation": "activated",
+      "form": "powder",
+      "label": "Ca-activated powder",
+      "equivalent": "5A (CaA)"
+    },
+    {
+      "id": 2,
+      "activation": "regular",
+      "form": "powder",
+      "label": "Regular powder",
+      "equivalent": "4A (NaA)"
+    },
+    {
+      "id": 3,
+      "activation": "activated",
+      "form": "granule",
+      "label": "Ca-activated granule",
+      "equivalent": "5A (CaA)"
+    },
+    {
+      "id": 4,
+      "activation": "regular",
+      "form": "granule",
+      "label": "Regular granule",
+      "equivalent": "4A (NaA)"
+    }
+  ],
+  "factors": {
+    "powder": 1.15,
+    "binder": 0.175,
+    "regular": 0.75
+  },
+  "bulk_density": {
+    "powder": 0.6,
+    "granule": 0.7
+  },
+  "vessel": {
+    "internal_cm3": 490.8738521234052,
+    "outer_diameter_mm": 70.0,
+    "outer_volume_cm3": 962.112750161874,
+    "wall_thickness_mm": 10.0,
+    "max_design_bar": 15.0,
+    "void_fraction": 0.375
+  },
+  "benchmark": {
+    "source": "Langmi et al. (2003) J. Alloys Compd. 356-357, 710-715",
+    "material": "zeolite 5A at 77 K",
+    "data": {
+      "pressures": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        10.0
+      ],
+      "wt_pct": [
+        0.32,
+        0.58,
+        0.74,
+        0.85,
+        0.94
+      ]
+    }
+  },
+  "notes": {
+    "regular_factor": "Regular (Na-form, 4A) capacity is estimated at 75% of the Ca-exchanged (5A) value. No published 4A isotherm is supplied by the specification. This single number sets the entire activated-vs-regular result and must be replaced with a measured or literature isotherm before the comparison carries any weight."
+  },
+  "stages": [
+    {
+      "name": "charge",
+      "minutes": 20.0
+    },
+    {
+      "name": "hold",
+      "minutes": 10.0
+    },
+    {
+      "name": "heat",
+      "minutes": 30.0
+    },
+    {
+      "name": "desorb",
+      "minutes": 20.0
+    },
+    {
+      "name": "cool",
+      "minutes": 40.0
+    }
+  ],
+  "dt_min": 0.5,
+  "defaults": {
+    "q_st": 6.0,
+    "T_charge": 195.14999999999998,
+    "T_desorb": 363.15,
+    "T_ambient": 298.15,
+    "P_charge": 10.0,
+    "P_source": 12.0,
+    "P_discharge": 1.0,
+    "pressures": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0
+    ],
+    "regular_factor": 0.75,
+    "cycles": 5,
+    "capacity_fade": 0.0
+  }
+}
